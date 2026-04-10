@@ -3,113 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sổ Tay Học Làm Phim AI</title>
+    <title>Hành Trình Làm Phim AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+    
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); /* Nền tối xanh dương đậm */
+            color: #f8fafc;
             margin: 0;
-            padding: 0;
+            padding: 40px 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            box-sizing: border-box;
         }
+
         .container {
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             max-width: 600px;
-            width: 90%;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05); /* Hiệu ứng kính mờ (Glassmorphism) */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
         }
+
         h1 {
             text-align: center;
-            color: #2c3e50;
-            margin-bottom: 30px;
+            color: #fbbf24; /* Màu vàng amber rực rỡ */
+            margin-top: 0;
+            font-weight: 800;
+            font-size: 28px;
+            letter-spacing: 0.5px;
         }
+
+        .subtitle {
+            text-align: center;
+            color: #94a3b8;
+            margin-bottom: 35px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
         .step-list {
-            list-style-type: none;
-            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 16px; /* Khoảng cách giữa các bước */
         }
-        .step-list li {
-            background: #e9f0f5;
-            margin-bottom: 15px;
-            padding: 15px 20px;
-            border-radius: 8px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .step-list li:hover {
-            transform: translateX(5px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        .step-list a {
-            text-decoration: none;
-            color: #2980b9;
-            font-weight: bold;
+
+        /* Thiết kế từng bước như một nút bấm lớn */
+        .step-item {
             display: flex;
             align-items: center;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 18px 20px;
+            text-decoration: none;
+            color: #e2e8f0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
         }
-        .step-list a:hover {
-            color: #1a5276;
+
+        .step-item:hover {
+            transform: translateY(-4px) scale(1.02);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #fbbf24;
+            box-shadow: 0 10px 25px rgba(251, 191, 36, 0.15);
         }
+
+        /* Hiệu ứng tia sáng lướt qua khi di chuột */
+        .step-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .step-item:hover::after {
+            left: 100%;
+        }
+
         .step-number {
-            background: #3498db;
+            background: linear-gradient(135deg, #f59e0b, #ea580c);
             color: white;
-            width: 28px;
-            height: 28px;
-            display: inline-flex;
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: 50%;
-            margin-right: 15px;
-            font-size: 14px;
+            border-radius: 12px; /* Góc bo mềm mại */
+            font-weight: 800;
+            font-size: 18px;
+            margin-right: 20px;
+            box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
         }
+
+        .step-text {
+            font-size: 17px;
+            font-weight: 600;
+            flex-grow: 1;
+        }
+        
+        .step-icon {
+            font-size: 20px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .step-item:hover .step-icon {
+            opacity: 1;
+        }
+
         .footer-text {
             text-align: center;
-            margin-top: 30px;
-            font-size: 0.9em;
-            color: #7f8c8d;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #64748b;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 25px;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>🎬 Quy Trình Làm Phim Cho Người Mới</h1>
-        <p>Dưới đây là các bước cơ bản để bắt đầu làm quen với các công cụ tạo video và hình ảnh bằng AI:</p>
+        <h1>🎬 Quy Trình Làm Phim</h1>
+        <p class="subtitle">Khởi đầu hành trình sáng tạo của bạn bằng cách làm quen với các công cụ AI mạnh mẽ dưới đây.</p>
         
-        <ul class="step-list">
-            <li>
-                <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
-                    <span class="step-number">1</span>
-                    Tạo ảnh trên ChatGPT
-                </a>
-            </li>
-            <li>
-                <a href="#" target="_blank" rel="noopener noreferrer">
-                    <span class="step-number">2</span>
-                    Sửa ảnh trên Nano
-                </a>
-            </li>
-            <li>
-                <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
-                    <span class="step-number">3</span>
-                    Tạo prompt (câu lệnh) trên ChatGPT
-                </a>
-            </li>
-            <li>
-                <a href="https://klingai.com/" target="_blank" rel="noopener noreferrer">
-                    <span class="step-number">4</span>
-                    Tạo video trên Kling 3.0
-                </a>
-            </li>
-        </ul>
+        <div class="step-list">
+            <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-text">Tạo ảnh trên ChatGPT</div>
+                <div class="step-icon">✨</div>
+            </a>
+
+            <a href="#" target="_blank" rel="noopener noreferrer" class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-text">Sửa ảnh trên Nano</div>
+                <div class="step-icon">🎨</div>
+            </a>
+
+            <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-text">Tạo prompt trên ChatGPT</div>
+                <div class="step-icon">📝</div>
+            </a>
+
+            <a href="https://klingai.com/" target="_blank" rel="noopener noreferrer" class="step-item">
+                <div class="step-number">4</div>
+                <div class="step-text">Tạo video trên Kling 3.0</div>
+                <div class="step-icon">🎥</div>
+            </a>
+        </div>
 
         <div class="footer-text">
-            <p>Hãy click vào từng bước để mở phần mềm tương ứng. Chúc bạn có những thước phim thật đẹp!</p>
+            <p>Nhấp vào từng bước để mở lối tắt đến công cụ. Chúc bạn có những thước phim thật đẹp và cảm xúc! 🍿</p>
         </div>
     </div>
 
